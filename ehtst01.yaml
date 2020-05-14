@@ -1,0 +1,15 @@
+- hosts:
+    - all
+  tasks:
+    - action: ping
+    - name: Recursively find /tmp files older than 2 days
+      find:
+        paths: /tmp
+#        age: 2d
+        recurse: yes
+    - name: Find /var/log all directories, exclude nginx and mysql
+      find:
+        paths: /var/log
+        recurse: no
+        file_type: directory
+        excludes: 'nginx,mysql'
